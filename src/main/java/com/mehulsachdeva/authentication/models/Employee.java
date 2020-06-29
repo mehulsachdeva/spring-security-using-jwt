@@ -21,6 +21,12 @@ public class Employee {
     @Column(name = "employee_id", nullable = false, unique = true)
     private int employeeId;
 
+    @Column(name = "username", nullable = false)
+    private String username;
+
+    @Column(name = "password", nullable = false)
+    private String password;
+
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
@@ -39,4 +45,7 @@ public class Employee {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "date_of_joining", nullable = false)
     private Date doj;
+
+    @Column(name = "role", nullable = false)
+    private String role;
 }

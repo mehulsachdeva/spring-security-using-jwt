@@ -3,6 +3,9 @@ package com.mehulsachdeva.authentication.services;
 public class Constants {
     public static final String FETCH_FAILURE_RESPONSE = "Failed To Fetch Employees";
 
+    public static final String INSERT_SUCCESS_RESPONSE = "Employee Added Successfully";
+    public static final String INSERT_FAILURE_RESPONSE = "Failed To Add Employee";
+
     public static final String NO_EMPLOYEE_FOUND_WITH_ID = "No Employee Associated With The ID";
     public static final String UPDATE_SUCCESS_RESPONSE = "Employee Updated Successfully";
     public static final String UPDATE_FAILURE_RESPONSE = "Failed To Update Employee";

@@ -16,6 +16,11 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+    @RequestMapping("/add")
+    public Map<String, String> addEmployee(Employee employee) {
+        return employeeService.addEmployee(employee);
+    }
+
     @RequestMapping("/employees")
     @PreAuthorize("hasAuthority('MANAGER')")
     public Map<String, String> fetchEmployees() {
@@ -23,7 +28,7 @@ public class EmployeeController {
     }
 
     @RequestMapping("/update")
-    @PreAuthorize("hasAuthority('EMPLOYEE') or hasAuthority('MANAGER')")
+    @PreAuthorize("hasAuthority('MANAGER')")
     public Map<String, String> updateEmployee(Employee employee) {
         return employeeService.updateEmployee(employee);
     }

@@ -6,6 +6,7 @@ import com.mehulsachdeva.authentication.util.ResponseBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -31,6 +32,23 @@ public class EmployeeService {
             return responseBuilder.createResponse(
                     Constants.FAILURE_STATUS,
                     Constants.FETCH_FAILURE_RESPONSE,
+                    Constants.EXCEPTION_RAISED + String.valueOf(e)
+            );
+        }
+    }
+
+    public Map<String, String> addEmployee(Employee employee) {
+        try {
+            employeeRepository.save(employee);
+            return responseBuilder.createResponse(
+                    Constants.SUCCESS_STATUS,
+                    Constants.INSERT_SUCCESS_RESPONSE,
+                    Constants.NO_ERROR
+            );
+        }catch(Exception e) {
+            return responseBuilder.createResponse(
+                    Constants.FAILURE_STATUS,
+                    Constants.INSERT_FAILURE_RESPONSE,
                     Constants.EXCEPTION_RAISED + String.valueOf(e)
             );
         }

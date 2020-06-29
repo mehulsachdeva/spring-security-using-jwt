@@ -41,7 +41,7 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
         grantedAuthorities.add(new SimpleGrantedAuthority(jwtUser.getRole()));
 
         return new JwtUserDetails(jwtUser.getUsername(),
-                jwtUser.getId(),
+                jwtUser.getEmployeeId(),
                 token,
                 grantedAuthorities);
     }

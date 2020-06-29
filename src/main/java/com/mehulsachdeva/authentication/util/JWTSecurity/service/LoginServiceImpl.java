@@ -14,12 +14,12 @@ public class LoginServiceImpl {
     public JwtUser authorizeUser(JwtUser jwtUser) {
         try {
             Optional<JwtUser> jwtUserContainer = loginRepository.findByUsernameAndAndPassword(jwtUser.getUsername(), jwtUser.getPassword());
-            if(jwtUserContainer.isPresent()) {
+            if (jwtUserContainer.isPresent()) {
                 return jwtUserContainer.get();
-            }else {
+            } else {
                 return null;
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }

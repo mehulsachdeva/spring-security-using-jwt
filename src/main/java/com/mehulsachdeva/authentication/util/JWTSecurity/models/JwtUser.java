@@ -8,12 +8,12 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "users")
+@Table(name = "employees")
 public class JwtUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id", nullable = false)
-    private long id;
+    @Column(name = "employee_id", nullable = false)
+    private long employeeId;
 
     @Column(name = "username", nullable = false)
     private String username;
