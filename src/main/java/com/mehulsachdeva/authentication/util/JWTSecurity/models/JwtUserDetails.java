@@ -63,7 +63,6 @@ public class JwtUserDetails implements UserDetails {
         return token;
     }
 
-
     public Long getId() {
         return id;
     }

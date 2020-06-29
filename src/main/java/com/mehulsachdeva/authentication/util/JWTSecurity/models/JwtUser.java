@@ -23,5 +23,4 @@ public class JwtUser {
 
     @Column(name = "role", nullable = false)
     private String role;
-
 }

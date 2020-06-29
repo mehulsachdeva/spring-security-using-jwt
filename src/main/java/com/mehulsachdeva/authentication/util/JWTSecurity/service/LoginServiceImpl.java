@@ -3,7 +3,6 @@ package com.mehulsachdeva.authentication.util.JWTSecurity.service;
 import com.mehulsachdeva.authentication.util.JWTSecurity.models.JwtUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 
@@ -12,16 +11,16 @@ public class LoginServiceImpl {
     @Autowired
     private LoginRepository loginRepository;
 
-    public boolean authorizeUser(JwtUser jwtUser) {
+    public JwtUser authorizeUser(JwtUser jwtUser) {
         try {
             Optional<JwtUser> jwtUserContainer = loginRepository.findByUsernameAndAndPassword(jwtUser.getUsername(), jwtUser.getPassword());
             if(jwtUserContainer.isPresent()) {
-                return true;
+                return jwtUserContainer.get();
             }else {
-                return false;
+                return null;
             }
         }catch(Exception e){
-            return false;
+            return null;
         }
     }
 }

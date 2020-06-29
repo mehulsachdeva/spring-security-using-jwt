@@ -1,4 +1,4 @@
-package com.mehulsachdeva.authentication.util.JWTSecurity.controllers;
+package com.mehulsachdeva.authentication.controllers;
 
 import com.mehulsachdeva.authentication.util.JWTSecurity.models.JwtUser;
 import com.mehulsachdeva.authentication.util.JWTSecurity.security.JwtGenerator;
@@ -9,24 +9,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
-@RequestMapping("/token")
-public class TokenController {
+@RequestMapping("/login")
+public class LoginController {
     private JwtGenerator jwtGenerator;
 
     @Autowired
     private LoginServiceImpl loginService;
 
     @Autowired
-    public TokenController(JwtGenerator jwtGenerator) {
+    public LoginController(JwtGenerator jwtGenerator) {
         this.jwtGenerator = jwtGenerator;
     }
 
     @PostMapping
-    public String generate(@RequestBody final JwtUser jwtUser) {
-        boolean status = loginService.authorizeUser(jwtUser);
-        if(status)
-            return jwtGenerator.generate(jwtUser);
-        return null;
+    public Map<String, String> generate(@RequestBody final JwtUser jwtUser) {
+        JwtUser fetchedJwtUser = loginService.authorizeUser(jwtUser);
+        return jwtGenerator.generate(fetchedJwtUser);
     }
 }

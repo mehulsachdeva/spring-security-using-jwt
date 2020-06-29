@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class EmployeeService {
@@ -30,6 +31,32 @@ public class EmployeeService {
             return responseBuilder.createResponse(
                     Constants.FAILURE_STATUS,
                     Constants.FETCH_FAILURE_RESPONSE,
+                    Constants.EXCEPTION_RAISED + String.valueOf(e)
+            );
+        }
+    }
+
+    public Map<String, String> updateEmployee(Employee employee) {
+        try {
+            Optional<Employee> employeeContainer = employeeRepository.findById(employee.getEmployeeId());
+            if(employeeContainer.isPresent()) {
+                employeeRepository.save(employee);
+                return responseBuilder.createResponse(
+                        Constants.SUCCESS_STATUS,
+                        Constants.UPDATE_SUCCESS_RESPONSE,
+                        Constants.NO_ERROR
+                );
+            }else {
+                return responseBuilder.createResponse(
+                        Constants.SUCCESS_STATUS,
+                        Constants.NO_EMPLOYEE_FOUND_WITH_ID,
+                        Constants.NO_ERROR
+                );
+            }
+        }catch(Exception e){
+            return responseBuilder.createResponse(
+                    Constants.SUCCESS_STATUS,
+                    Constants.UPDATE_FAILURE_RESPONSE,
                     Constants.EXCEPTION_RAISED + String.valueOf(e)
             );
         }

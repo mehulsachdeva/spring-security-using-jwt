@@ -46,7 +46,9 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
 
         http.csrf().disable()
-                .authorizeRequests().antMatchers("**/example/employees/**").authenticated()
+                .authorizeRequests()
+                    .antMatchers("**/login").permitAll()
+                    .antMatchers("**/example/employees").authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(entryPoint)
                 .and()
@@ -54,6 +56,5 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter{
 
         http.addFilterBefore(authenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         http.headers().cacheControl();
-
     }
 }

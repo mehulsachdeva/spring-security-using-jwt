@@ -20,15 +20,13 @@ public class JwtValidator {
                     .getBody();
 
             jwtUser = new JwtUser();
-
             jwtUser.setUsername(body.getSubject());
             jwtUser.setId(Long.parseLong((String) body.get("userId")));
             jwtUser.setRole((String) body.get("role"));
-        }
-        catch (Exception e) {
+
+        }catch (Exception e) {
             System.out.println(e);
         }
-
         return jwtUser;
     }
 }
