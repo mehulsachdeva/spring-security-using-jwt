@@ -6,7 +6,6 @@ import com.mehulsachdeva.authentication.util.ResponseBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -57,14 +56,14 @@ public class EmployeeService {
     public Map<String, String> updateEmployee(Employee employee) {
         try {
             Optional<Employee> employeeContainer = employeeRepository.findById(employee.getEmployeeId());
-            if(employeeContainer.isPresent()) {
+            if (employeeContainer.isPresent()) {
                 employeeRepository.save(employee);
                 return responseBuilder.createResponse(
                         Constants.SUCCESS_STATUS,
                         Constants.UPDATE_SUCCESS_RESPONSE,
                         Constants.NO_ERROR
                 );
-            }else {
+            } else {
                 return responseBuilder.createResponse(
                         Constants.SUCCESS_STATUS,
                         Constants.NO_EMPLOYEE_FOUND_WITH_ID,

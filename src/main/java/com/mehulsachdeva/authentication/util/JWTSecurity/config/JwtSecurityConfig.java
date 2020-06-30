@@ -1,9 +1,6 @@
 package com.mehulsachdeva.authentication.util.JWTSecurity.config;
 
-import com.mehulsachdeva.authentication.util.JWTSecurity.security.JwtAuthenticationEntryPoint;
-import com.mehulsachdeva.authentication.util.JWTSecurity.security.JwtAuthenticationProvider;
-import com.mehulsachdeva.authentication.util.JWTSecurity.security.JwtAuthenticationTokenFilter;
-import com.mehulsachdeva.authentication.util.JWTSecurity.security.JwtSuccessHandler;
+import com.mehulsachdeva.authentication.util.JWTSecurity.security.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,7 +41,6 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("**/login").permitAll()
